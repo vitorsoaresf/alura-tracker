@@ -10,10 +10,11 @@
           type="text"
           class="input"
           placeholder="Qual tarefa você deseja iniciar?"
+          v-model="descricao"
         />
       </div>
       <div class="column">
-        <TemporizadorApp />
+        <TemporizadorApp @aoTemporizadorFinalizado="finalizarTarefa" />
       </div>
     </div>
   </div>
@@ -29,10 +30,12 @@ export default defineComponent({
     TemporizadorApp,
   },
   data() {
-    return {
-      tempoEmSegundos: 0,
-      cronometro: 0,
-    };
+    return { descricao: "" };
+  },
+  methods: {
+    finalizarTarefa(tempoDecorrido: number): void {
+      this.descricao = "";
+    },
   },
 });
 </script>
