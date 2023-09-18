@@ -7,17 +7,7 @@
       <BarraLateral @aoTemaAlterado="trocaTema" />
     </div>
     <div class="column is-three-quarter conteudo">
-      <FormularioApp @aoSalvarTarefa="salvarTarefa" />
-      <div class="lista">
-        <Tarefa
-          v-for="(tarefa, index) in tarefas"
-          :key="index"
-          :tarefa="tarefa"
-        />
-        <Box v-if="listaEstaVazia">
-          Voce nao estao muito produtivo hoje :(
-        </Box>
-      </div>
+      <router-view></router-view>
     </div>
   </main>
 </template>
@@ -25,34 +15,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import BarraLateral from "./components/BarraLateral.vue";
-import FormularioApp from "./components/Formulario.vue";
-import Tarefa from "./components/Tarefa.vue";
-import ITarefa from "./interfaces/ITarefa";
-import Box from "./components/Box.vue";
 
 export default defineComponent({
   name: "App",
   components: {
     BarraLateral,
-    FormularioApp,
-    Tarefa,
-    Box,
   },
   data() {
     return {
-      tarefas: [] as ITarefa[],
       modoEscuroAtivo: false,
     };
   },
-  computed: {
-    listaEstaVazia(): boolean {
-      return this.tarefas.length === 0;
-    },
-  },
   methods: {
-    salvarTarefa(tarefa: ITarefa) {
-      this.tarefas.push(tarefa);
-    },
     trocaTema(modoEscuroAtivo: boolean) {
       this.modoEscuroAtivo = modoEscuroAtivo;
     },
