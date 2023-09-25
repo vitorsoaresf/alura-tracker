@@ -6,7 +6,7 @@ interface IEstado {
   projetos: IProjeto[];
 }
 
-export const key: InjectionKey<Store<IEstado>>;
+export const key: InjectionKey<Store<IEstado>> = Symbol();
 
 export const store = createStore<IEstado>({
   state: {
